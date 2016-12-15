@@ -65,7 +65,7 @@ public class PostsBean implements Serializable{
     }
     public List<Posts> listOfPosts(){
         
-       return this.postList = postsFacade.findAllPosts();
-      //  return this.postList = postsFacade.findAll();
+       //return this.postList = postsFacade.findAllPosts();
+       return this.postList = postsFacade.findAll();
     }
 }

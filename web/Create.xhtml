@@ -14,7 +14,18 @@
             <f:viewAction action="#{userBean.startSession}"/>
         </f:metadata>
         <h:form>
+            <h:outputLabel for="postName" value="Post Name"></h:outputLabel>
+            <h:inputText id="postName" value="#{createBean.postName}" class="form-control"></h:inputText>
+            <h:outputLabel for="postContent" value="Post Content"/>
+            <h:inputTextarea id="postContent" value="#{createBean.postContent}" class="form-control" />
+            <br/>
+          
+            <h:commandButton value="Create Post" action="View.xhtml" class="btn btn-med btn-primary center-block">
+                <f:actionListener binding="#{createBean.createPost()}"/>
+            </h:commandButton>
+            <br/><br/>
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
+            
         </h:form>
     </h:body>
 </html>
