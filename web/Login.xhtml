@@ -23,7 +23,7 @@
             <h:commandButton action="#{userBean.login}" value="Login" class="btn btn-block btn-primary"></h:commandButton>
         
         </h:form>
-        <h:dataTable value="#{userBean.users}" var="user" class="table table-bordered">
+        <h:dataTable value="#{userBean.getUsers()}" var="user" class="table table-bordered">
             <h:column>
                 <f:facet name="header">
                     User Names    
