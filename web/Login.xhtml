@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        <f:metadata> 
+            <f:viewAction action="#{userBean.startSession}"/>
+        </f:metadata>
+        <h:form>
+            <h:outputLabel for="userName" value="User Name"></h:outputLabel>
+            <h:inputText id="userName" value="#{userBean.userName}" class="form-control"></h:inputText>
+            
+            <h:outputLabel for="passWord" value="Password"></h:outputLabel>
+            <h:inputSecret id="passWord" value="#{userBean.passWord}" class="form-control"></h:inputSecret>
+       
+            <h:commandButton action="#{userBean.login}" value="Login" class="btn btn-block btn-primary"></h:commandButton>
+        
+        </h:form>
+        <h:dataTable value="#{userBean.users}" var="user" class="table table-bordered">
+            <h:column>
+                <f:facet name="header">
+                    User Names    
+                </f:facet>
+                #{user.userName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    User Type
+                </f:facet>
+                #{user.userType}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Pass Words
+                </f:facet>
+                #{user.passWord}
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+
