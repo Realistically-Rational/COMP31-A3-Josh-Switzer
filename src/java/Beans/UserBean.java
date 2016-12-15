@@ -36,6 +36,13 @@ public class UserBean implements Serializable{
     
         private String userType;
 
+    
+    public int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
     public String getUserType() {
         return userType;
     }

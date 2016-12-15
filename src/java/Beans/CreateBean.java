@@ -53,6 +53,7 @@ public class CreateBean implements Serializable{
         
         post.setPostName(postName);
         post.setPostContent(postContent);
+        post.setUserId(UserBean.userId);
         post.setPostDate(new Date());
         
         postsFacade.persistPost(post);
