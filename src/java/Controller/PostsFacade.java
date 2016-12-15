@@ -31,6 +31,7 @@ public class PostsFacade extends AbstractFacade<Posts> {
         super(Posts.class);
     }
     /* Changed Posts.findAll*/
+   
     public List<Posts> findAllPosts() {
         return em.createNamedQuery("Posts.findAll").getResultList();
         //return PostsFacade.findAll();
