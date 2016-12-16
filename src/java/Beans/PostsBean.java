@@ -7,26 +7,25 @@ package Beans;
 
 import Controller.PostsFacade;
 import Model.Posts;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
- * @author jswitzer09
+ * @author Josh
  */
-//@Named("postsBean")
-@ManagedBean
+@Named(value = "postsBean")
 @SessionScoped
-public class PostsBean implements Serializable{
+public class PostsBean implements Serializable {
 
-    public PostsBean(){
-        
+    /**
+     * Creates a new instance of PostsBean1
+     */
+    public PostsBean() {
     }
-    
     @EJB
     private PostsFacade postsFacade;
 

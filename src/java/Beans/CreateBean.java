@@ -6,25 +6,30 @@
 package Beans;
 
 import Controller.PostsFacade;
+import Controller.UsersFacade;
 import Model.Posts;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author jswitzer09
+ * @author Josh
  */
-@ManagedBean
+@Named(value = "createBean")
 @SessionScoped
-public class CreateBean implements Serializable{
-    public CreateBean(){
-        
+public class CreateBean implements Serializable {
+
+    /**
+     * Creates a new instance of CreateBean1
+     */
+    public CreateBean() {
     }
     @EJB
     private PostsFacade postsFacade;
+    private UsersFacade usersFacade;
     
     private int userId;
 
@@ -71,7 +76,7 @@ public class CreateBean implements Serializable{
     {
         Posts post = new Posts();
         
-        //post.setUserId(UserBean.getUserId());
+        post.setUserId(usersFacade.find(userId));
         post.setPostName(postName);
         post.setPostContent(postContent);
         post.setPostCreator(userName);
@@ -79,5 +84,4 @@ public class CreateBean implements Serializable{
         
         postsFacade.persistPost(post);
     }
-    
 }

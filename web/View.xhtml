@@ -11,7 +11,7 @@
     </h:head>
     <h:body>
         <f:metadata> 
-            <f:viewAction action="#{userBean.startSession}"/>
+            <f:viewAction action="#{userBean.startSession()}"/>
         </f:metadata>
         <h:dataTable value="#{postsBean.listOfPosts()}" var="post" class="table table-bordered">
             <h:column>

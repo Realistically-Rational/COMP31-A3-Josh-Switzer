@@ -1,21 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Beans;
 
 import Controller.UsersFacade;
 import Model.Users;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-//@Named("UserBean")
-@ManagedBean
+/**
+ *
+ * @author Josh
+ */
+@Named(value = "userBean")
 @SessionScoped
-public class UserBean implements Serializable{
-    
-    
+public class UserBean implements Serializable {
+
+    /**
+     * Creates a new instance of UserBean1
+     */
+    public UserBean() {
+    }
     @EJB
     private UsersFacade usersFacade;
     
@@ -36,7 +48,7 @@ public class UserBean implements Serializable{
         private String userType;
 
     
-    public int userId;
+    private int userId;
 
     public int getUserId() {
         return userId;
@@ -100,10 +112,10 @@ public class UserBean implements Serializable{
         }
         if (user != null && userName.equals(user.getUserName()) && passWord.equals(user.getPassWord()))
         {
-            /*FacesContext fc = FacesContext.getCurrentInstance();
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
             session.setAttribute("userName", userName);
-            session.setAttribute("passWord", passWord);*/
+            session.setAttribute("passWord", passWord);
             return "index";
         }
         return "Login";
@@ -111,9 +123,9 @@ public class UserBean implements Serializable{
     
     
     public String startSession(){
-        /*FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-        String userName = (String) session.getAttribute("userName");*/
+        String userName = (String) session.getAttribute("userName");
         if (userName == null || userName.equals("")){
             return "Login";
         }
@@ -123,9 +135,5 @@ public class UserBean implements Serializable{
     
     public List<Users> getUsers(){
         return usersFacade.findAll();
-    }
-    public UserBean(){
-        System.out.println("Created a Bean2134123412341234123412512352345234523452345234523451234523452345234235234523412354234");
-                
     }
 }

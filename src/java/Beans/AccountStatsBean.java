@@ -7,20 +7,23 @@ package Beans;
 
 import Controller.UsersFacade;
 import Model.Users;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Josh
  */
-@ManagedBean
+@Named(value = "accountStatsBean")
 @SessionScoped
-public class AccountStatsBean implements Serializable{
-    public AccountStatsBean(){
-        
+public class AccountStatsBean implements Serializable {
+
+    /**
+     * Creates a new instance of AccountStatsBean1
+     */
+    public AccountStatsBean() {
     }
     @EJB
     private UsersFacade usersFacade;
@@ -42,7 +45,7 @@ public class AccountStatsBean implements Serializable{
         private String userType;
 
     
-    public int userId;
+    private int userId;
 
     public int getUserId() {
         return userId;
@@ -105,6 +108,4 @@ public class AccountStatsBean implements Serializable{
         }
         return user;
     }
-        
-    
 }
