@@ -26,7 +26,17 @@ public class CreateBean implements Serializable{
     @EJB
     private PostsFacade postsFacade;
     
-        private String postName;
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private String postName;
 
     public String getPostName() {
         return postName;
@@ -36,6 +46,16 @@ public class CreateBean implements Serializable{
         this.postName = postName;
     }
     
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     private String postContent;
 
     public String getPostContent() {
@@ -51,9 +71,10 @@ public class CreateBean implements Serializable{
     {
         Posts post = new Posts();
         
+        //post.setUserId(UserBean.getUserId());
         post.setPostName(postName);
         post.setPostContent(postContent);
-        post.setUserId(UserBean.userId);
+        post.setPostCreator(userName);
         post.setPostDate(new Date());
         
         postsFacade.persistPost(post);
