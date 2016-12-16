@@ -14,6 +14,50 @@
             <f:viewAction action="#{userBean.startSession}"/>
         </f:metadata>
         <h:form>
+            <h:outputLabel for="userName" value="User Name (event=change for AJAX - for testing purposes can use cbanger ascott mstjean tgibbons jswitzer Admin, if you press Enter, you will be logged out"></h:outputLabel>
+            <h:inputText id="userName" value="#{changeAccount.userName}" class="form-control">
+                <f:ajax event="change" execute="userName" render="accountType" />
+            </h:inputText>
+            <br/>
+            <h:dataTable id="accountType" class="table table-bordered" var="user" value="${changeAccount.getUsers()}">
+                <h:column>
+                    <f:facet name="header">
+                        User's First Name
+                    </f:facet>
+                    #{user.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        User's Last Name
+                    </f:facet>
+                    #{user.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        User Name
+                    </f:facet>
+                    #{user.userName}
+                </h:column>
+                <h:column id="userType">
+                    <f:facet name="header">
+                        User's Account Type
+                    </f:facet>
+                    #{user.userType}
+                </h:column>
+                <h:column >
+                    <f:facet name="header">
+                        Select Type that you want to Change Account to
+                    </f:facet>
+                    <h:selectOneMenu  value="#{changeAccount.accountList}" id="dropdown">
+                        <f:selectItems value="#{changeAccount.accountTypes}"/>
+                        <f:ajax event="" execute="dropdown" render="userType" />
+                    </h:selectOneMenu>
+                    
+                </h:column>
+                
+            </h:dataTable>  
+            
+            
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
         </h:form>
     </h:body>

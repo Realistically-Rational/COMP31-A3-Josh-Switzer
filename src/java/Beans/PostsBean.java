@@ -22,7 +22,7 @@ import javax.ejb.EJB;
 public class PostsBean implements Serializable {
 
     /**
-     * Creates a new instance of PostsBean1
+     * Creates a new instance of PostsBean
      */
     public PostsBean() {
     }
@@ -63,8 +63,6 @@ public class PostsBean implements Serializable {
         this.post = post;
     }
     public List<Posts> listOfPosts(){
-        
-       //return this.postList = postsFacade.findAllPosts();
        return this.postList = postsFacade.findAll();
     }
 }

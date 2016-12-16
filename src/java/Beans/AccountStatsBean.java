@@ -21,7 +21,7 @@ import javax.ejb.EJB;
 public class AccountStatsBean implements Serializable {
 
     /**
-     * Creates a new instance of AccountStatsBean1
+     * Creates a new instance of AccountStatsBean
      */
     public AccountStatsBean() {
     }

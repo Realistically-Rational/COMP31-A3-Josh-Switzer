@@ -23,7 +23,7 @@ import javax.ejb.EJB;
 public class CreateBean implements Serializable {
 
     /**
-     * Creates a new instance of CreateBean1
+     * Creates a new instance of CreateBean
      */
     public CreateBean() {
     }

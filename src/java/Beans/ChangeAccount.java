@@ -10,29 +10,50 @@ import Model.Users;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 import javax.ejb.EJB;
 
 /**
  *
  * @author Josh
  */
-@Named(value = "userBean")
+@Named(value = "changeAccount")
 @SessionScoped
-public class UserBean implements Serializable {
-
-    /**
-     * Creates a new instance of UserBean
-     */
-    public UserBean() {
-    }
+public class ChangeAccount implements Serializable {
     @EJB
     private UsersFacade usersFacade;
-    
-    public void setUsersFacade(UsersFacade usersFacade){
-        this.usersFacade = usersFacade;
+    /**
+     * Creates a new instance of ChangeAccount
+     */
+    public ChangeAccount() {
+        this.accountTypes = new ArrayList<>();
+        accountTypes.add("Admin");
+        accountTypes.add("Moderator");
+        accountTypes.add("General");
+        accountTypes.add("Guest");
+        accountList = accountTypes.get(0);
     }
     
+    
+        private ArrayList<String> accountTypes;
+
+    public ArrayList<String> getAccountTypes() {
+        return accountTypes;
+    }
+
+    public void setAccountTypes(ArrayList<String> accountTypes) {
+        this.accountTypes = accountTypes;
+    }
+    
+    private String accountList;
+
+    public String getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(String accountList) {
+        this.accountList = accountList;
+    }
     
     private Users user;
     public Users getUser(){
@@ -100,31 +121,14 @@ public class UserBean implements Serializable {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-    
-    public String login(){
+    public Users getUsers(){
         try{
             this.user = usersFacade.findByUserName(userName);
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
-        if (user != null && userName.equals(user.getUserName()) && passWord.equals(user.getPassWord()))
-        {
-            return "index";
-        }
-        return "Login";
+        return user;
     }
-    
-    
-    public String startSession(){
-        if (userName == null || userName.equals("")){
-            return "Login";
-        }
-        return "index";
-    }
-    
-    
-    public List<Users> getUsers(){
-        return usersFacade.findAll();
-    }
+
 }
