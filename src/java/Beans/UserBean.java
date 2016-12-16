@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 //@Named("UserBean")
@@ -112,9 +111,9 @@ public class UserBean implements Serializable{
     
     
     public String startSession(){
-        /*FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-        String userName = (String) session.getAttribute("userName");*/
+        String userName = (String) session.getAttribute("userName");
         if (userName == null || userName.equals("")){
             return "Login";
         }
