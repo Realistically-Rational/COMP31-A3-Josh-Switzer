@@ -13,7 +13,41 @@
         <f:metadata> 
             <f:viewAction action="#{userBean.startSession}"/>
         </f:metadata>
+        <br/>
         <h:form>
+            <h:outputLabel for="userName" value="User Name (event=change for AJAX - for testing purposes can use cbanger ascott mstjean tgibbons jswitzer Admin, if you press Enter, you will be logged out"></h:outputLabel>
+            <h:inputText id="userName" value="#{accountStatsBean.userName}" class="form-control">
+                <f:ajax event="change" execute="userName" render="accountStats" />
+            </h:inputText>
+            <br/>
+            <h:dataTable id="accountStats" class="table table-bordered" var="user" value="${accountStatsBean.getUsers()}">
+                <h:column>
+                    <f:facet name="header">
+                        User Id
+                    </f:facet>
+                    #{user.userId}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        User's Account Type
+                    </f:facet>
+                    #{user.userType}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        User's First Name
+                    </f:facet>
+                    #{user.firstName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        User's Last Name
+                    </f:facet>
+                    #{user.lastName}
+                </h:column>
+            </h:dataTable>  
+            <h:outputLabel value="In the future would also show # of posts / account created date and more, these werent needed to be implemented at this given time"></h:outputLabel>
+            <br/>
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
         </h:form>
         

@@ -1,21 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Beans;
 
 import Controller.UsersFacade;
 import Model.Users;
 import java.io.Serializable;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
-//@Named("UserBean")
+/**
+ *
+ * @author Josh
+ */
 @ManagedBean
 @SessionScoped
-public class UserBean implements Serializable{
-    
-    
+public class AccountStatsBean implements Serializable{
+    public AccountStatsBean(){
+        
+    }
     @EJB
     private UsersFacade usersFacade;
     
@@ -90,42 +96,15 @@ public class UserBean implements Serializable{
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-    
-    public String login(){
+    public Users getUsers(){
         try{
             this.user = usersFacade.findByUserName(userName);
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
-        if (user != null && userName.equals(user.getUserName()) && passWord.equals(user.getPassWord()))
-        {
-            /*FacesContext fc = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-            session.setAttribute("userName", userName);
-            session.setAttribute("passWord", passWord);*/
-            return "index";
-        }
-        return "Login";
+        return user;
     }
+        
     
-    
-    public String startSession(){
-        /*FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(true);
-        String userName = (String) session.getAttribute("userName");*/
-        if (userName == null || userName.equals("")){
-            return "Login";
-        }
-        return "index";
-    }
-    
-    
-    public List<Users> getUsers(){
-        return usersFacade.findAll();
-    }
-    public UserBean(){
-        System.out.println("Created a Bean2134123412341234123412512352345234523452345234523451234523452345234235234523412354234");
-                
-    }
 }
