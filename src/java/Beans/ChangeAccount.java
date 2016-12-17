@@ -12,6 +12,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -142,14 +144,13 @@ public class ChangeAccount implements Serializable {
         return user;
     }
     public void updateAccountType(){
-        Users user = new Users();
-        //int userid = usersFacade.find(userId);
-        //user.setUserId(usersFacade.find(userId));
+        Users user = usersFacade.findByUserName(userName);
+        user.setUserId(user.getUserId());
         user.setUserType(accountList);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
         user.setUserName(userName);
-        user.setPassWord(passWord);
+        user.setPassWord(user.getPassWord());
         
         usersFacade.edit(user);
     }

@@ -8,6 +8,7 @@ package Beans;
 import Controller.PostsFacade;
 import Controller.UsersFacade;
 import Model.Posts;
+import Model.Users;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -32,6 +33,7 @@ public class CreateBean implements Serializable {
     }
     @EJB
     private PostsFacade postsFacade;
+    @EJB
     private UsersFacade usersFacade;
     
     private int userId;
@@ -54,7 +56,7 @@ public class CreateBean implements Serializable {
         this.postName = postName;
     }
     
-    private String userName;
+    /*private String userName;
 
     public String getUserName() {
         return userName;
@@ -63,7 +65,7 @@ public class CreateBean implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+*/
     private String postContent;
 
     public String getPostContent() {
@@ -78,8 +80,8 @@ public class CreateBean implements Serializable {
     {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        //HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        session.getAttribute(userName);
+        String userName = (String) session.getAttribute("userName");
+        
         Posts post = new Posts();
         post.setUserId(usersFacade.findByUserName(userName));
         post.setPostName(postName);
