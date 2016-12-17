@@ -12,6 +12,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -104,6 +107,11 @@ public class UserBean implements Serializable {
     public String login(){
         try{
             this.user = usersFacade.findByUserName(userName);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            
+            session.setAttribute("userName", userName);
+            session.setAttribute("passWord", passWord);
         }
         catch (Exception ex){
             ex.printStackTrace();

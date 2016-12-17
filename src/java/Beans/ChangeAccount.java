@@ -67,9 +67,9 @@ public class ChangeAccount implements Serializable {
         private String userType;
 
     
-    private int userId;
+    private Users userId;
 
-    public int getUserId() {
+    public Users getUserId() {
         return userId;
     }
 
@@ -121,6 +121,17 @@ public class ChangeAccount implements Serializable {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
+    
+    private String accountChange;
+
+    public String getAccountChange() {
+        return accountChange;
+    }
+
+    public void setAccountChange(String accountChange) {
+        this.accountChange = accountChange;
+    }
+
     public Users getUsers(){
         try{
             this.user = usersFacade.findByUserName(userName);
@@ -130,5 +141,16 @@ public class ChangeAccount implements Serializable {
         }
         return user;
     }
-
+    public void updateAccountType(){
+        Users user = new Users();
+        //int userid = usersFacade.find(userId);
+        //user.setUserId(usersFacade.find(userId));
+        user.setUserType(accountList);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUserName(userName);
+        user.setPassWord(passWord);
+        
+        usersFacade.edit(user);
+    }
 }

@@ -48,16 +48,17 @@
                     <f:facet name="header">
                         Select Type that you want to Change Account to
                     </f:facet>
-                    <h:selectOneMenu  value="#{changeAccount.accountList}" id="dropdown">
+                    <h:selectOneMenu value="#{changeAccount.accountList}" id="dropdown">
                         <f:selectItems value="#{changeAccount.accountTypes}"/>
-                        <f:ajax event="" execute="dropdown" render="userType" />
+                        <f:ajax event="change" execute="dropdown" render="userType" />
                     </h:selectOneMenu>
                     
                 </h:column>
                 
             </h:dataTable>  
-            
-            
+            <br/>
+            <h:commandButton value="Submit Changes" action="#{changeAccount.updateAccountType()}" class="btn btn-block btn-primary"/>          
+            <br/><br/>
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
         </h:form>
     </h:body>

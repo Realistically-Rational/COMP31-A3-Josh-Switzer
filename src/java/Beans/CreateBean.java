@@ -13,6 +13,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -70,18 +73,21 @@ public class CreateBean implements Serializable {
     public void setPostContent(String postContent) {
         this.postContent = postContent;
     }
-
     
-    public void createPost()
+    public String createPost()
     {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        //HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        session.getAttribute(userName);
         Posts post = new Posts();
-        
-        post.setUserId(usersFacade.find(userId));
+        post.setUserId(usersFacade.findByUserName(userName));
         post.setPostName(postName);
         post.setPostContent(postContent);
         post.setPostCreator(userName);
         post.setPostDate(new Date());
         
-        postsFacade.persistPost(post);
+        postsFacade.create(post);
+        return "View.xhtml";
     }
 }

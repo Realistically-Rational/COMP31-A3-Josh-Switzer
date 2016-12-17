@@ -36,10 +36,5 @@ public class PostsFacade extends AbstractFacade<Posts> {
         return em.createNamedQuery("Posts.findAll").getResultList();
         //return PostsFacade.findAll();
     }
-    public void persistPost(Posts post){
-        //em.getTransaction().begin();
-        em.persist(post);
-        //em.getTransaction().commit();
-    }
     
 }

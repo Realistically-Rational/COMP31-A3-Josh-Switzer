@@ -20,8 +20,8 @@
             <h:inputTextarea id="postContent" value="#{createBean.postContent}" class="form-control" />
             <br/>
           
-            <h:commandButton value="Create Post" action="View.xhtml" class="btn btn-med btn-primary center-block">
-                <f:actionListener binding="#{createBean.createPost()}"/>
+            <h:commandButton value="Create Post" action="#{createBean.createPost()}" class="btn btn-med btn-primary center-block">
+                
             </h:commandButton>
             <br/><br/>
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
