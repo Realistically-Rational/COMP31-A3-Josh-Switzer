@@ -17,11 +17,22 @@
         
         <h:form>
             <h:commandButton value="View Posts" action="View.xhtml" class="btn btn-block btn-primary"/>
-            <h:commandButton value="View Account Statistics" action="AccountStats.xhtml" class="btn btn-block btn-warning"/>
-            <h:commandButton value="Send Personal Messages" action="PersonalMessage.xhtml" class="btn btn-block btn-danger"/>
-            <h:commandButton value="Create Posts" action="Create.xhtml" class="btn btn-block btn-success"/>
-            <h:commandButton value="Delete Posts" action="Delete.xhtml" class="btn btn-block btn-info"/>
-            <h:commandButton value="Change Account Type" class="btn btn-block btn-warning" action="Change.xhtml" rendered="#{userBean.user.userType == 'Admin' or userBean.user.userType == 'Moderator'}"/>
+            <h:commandButton value="View Account Statistics" action="AccountStats.xhtml" class="btn btn-block btn-warning"
+                             rendered="#{userBean.user.userType == 'Admin' 
+                                         or userBean.user.userType == 'Moderator'
+                                         or userBean.user.userType == 'General'}"/>
+            <h:commandButton value="Send Personal Messages" action="PersonalMessage.xhtml" class="btn btn-block btn-info"
+                             rendered="#{userBean.user.userType == 'Admin' 
+                                         or userBean.user.userType == 'Moderator'
+                                         or userBean.user.userType == 'General'}"/>
+            <h:commandButton value="Create Posts" action="Create.xhtml" class="btn btn-block btn-success"
+                             rendered="#{userBean.user.userType == 'Admin' 
+                                         or userBean.user.userType == 'Moderator'
+                                         or userBean.user.userType == 'General'}"/>
+            <h:commandButton value="Change Account Type" class="btn btn-block btn-warning" action="Change.xhtml" 
+                             rendered="#{userBean.user.userType == 'Admin' 
+                                         or userBean.user.userType == 'Moderator'}"/>
+                                        
             <h:commandButton value="Logout" action="Login.xhtml" class="btn btn-block btn-danger"/>
         </h:form>
         
